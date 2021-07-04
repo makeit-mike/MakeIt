@@ -3,14 +3,35 @@ body {
   background-image: url("./static/bg.gif");
   color: beige !important;
 }
+body::-webkit-scrollbar {
+  width: 4px;
+  background-color: rgb(0, 0, 0);
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(36, 36, 36);
+  outline: 1px solid rgb(43, 43, 43);
+}
 a {
   text-decoration: underline !important;
   text-decoration-style: wavy !important;
   color: #ffffff !important;
 }
+.pseudoLinkButton {
+  background: transparent;
+  color: white;
+  border: none;
+  text-decoration: underline;
+  font-style: italic;
+}
 .Divider {
   width: 100%;
   padding: 25px;
+  height: 51px;
 }
 .App {
   text-align: center;
@@ -20,6 +41,18 @@ a {
   font-family: cursive;
   font-smooth: never;
   -webkit-font-smoothing: none;
+}
+.emoji {
+  display: inline;
+  font-size: 25px;
+}
+.PNF {
+  height: 1200px;
+}
+.PageNotFoundBlerb,
+.MyInteresets {
+  padding: 30px;
+  max-width: 700px;
 }
 .App-logo {
   height: 40vmin;
@@ -63,5 +96,135 @@ a {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.solarSystem {
+  margin-top: -35px;
+  position: absolute;
+}
+.sun {
+  margin-left: 398px;
+  margin-top: 184px;
+}
+.mercury {
+  position: absolute;
+  left: 391px;
+  top: 191px;
+
+  -webkit-animation: myOrbit 1.8s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 1.8s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 1.8s linear infinite; /* Opera 12+ */
+  animation: myOrbit 1.8s linear infinite;
+}
+.venus {
+  position: absolute;
+  left: 391px;
+  top: 191px;
+
+  -webkit-animation: myOrbit 2s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 2s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 2s linear infinite; /* Opera 12+ */
+  animation: myOrbit 2s linear infinite;
+}
+.earth {
+  position: absolute;
+  left: 391px;
+  top: 191px;
+  width: 80px;
+
+  -webkit-animation: myOrbit 2s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 2s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 2s linear infinite; /* Opera 12+ */
+  animation: myOrbit 2s linear infinite;
+}
+.mars {
+  position: absolute;
+  left: 391px;
+  top: 191px;
+
+  -webkit-animation: myOrbit 2.8s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 2.8s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 2.8s linear infinite; /* Opera 12+ */
+  animation: myOrbit 2.8s linear infinite;
+}
+.jupiter {
+  position: absolute;
+  left: 391px;
+  top: 191px;
+
+  -webkit-animation: myOrbit 3s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 3s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 3s linear infinite; /* Opera 12+ */
+  animation: myOrbit 3s linear infinite;
+}
+.saturn {
+  position: absolute;
+  left: 315px;
+  top: 143px;
+  padding: 25px;
+
+  -webkit-animation: myOrbit 4s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 4s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 4s linear infinite; /* Opera 12+ */
+  animation: myOrbit 4s linear infinite;
+}
+.uranus {
+  position: absolute;
+  left: 391px;
+  top: 191px;
+
+  -webkit-animation: myOrbit 5s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 5s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 5s linear infinite; /* Opera 12+ */
+  animation: myOrbit 5s linear infinite;
+}
+.pluto {
+  position: absolute;
+  left: 391px;
+  top: 191px;
+  -webkit-animation: myOrbit 10s linear infinite; /* Chrome, Safari 5 */
+  -moz-animation: myOrbit 10s linear infinite; /* Firefox 5-15 */
+  -o-animation: myOrbit 10s linear infinite; /* Opera 12+ */
+  animation: myOrbit 10s linear infinite;
+}
+
+/*
+* Set up the keyframes to actually describe the begining and end states of 
+* the animation.  The browser will interpolate all the frames between these 
+* points.  Again, remember your vendor-specific prefixes for now!
+*/
+@-webkit-keyframes myOrbit {
+  from {
+    -webkit-transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+@-moz-keyframes myOrbit {
+  from {
+    -moz-transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+@-o-keyframes myOrbit {
+  from {
+    -o-transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    -o-transform: rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+@keyframes myOrbit {
+  from {
+    transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(150px) rotate(-360deg);
   }
 }
