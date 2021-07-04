@@ -1,0 +1,33 @@
+---
+layout: document
+---
+{%- comment -%}
+    List of all posts in site or a specified collection
+ 
+    Parameters:
+        page.title: page title
+        page.item_collection: collection of pages to show, omit to show all posts
+        page.item_categories: category list an item must have to be rendered
+{%- endcomment -%}
+
+
+{{- content -}}
+
+{%- include filtered_collection.fn collection=page.item_collection categories=page.item_categories -%}
+{%- assign _collection_documents = filtered_collection | reverse -%}
+{%- assign _document_year = nil -%}
+{%- assign _section_year = nil -%}
+
+{%- for _document in _collection_documents -%}
+    {%- assign _document_year = _document.date | date: "%Y" -%}
+    {%- if _document_year != _section_year -%}
+        {%- assign _section_year = _document_year -%}
+        {%- unless forloop.first -%}
+</ul>
+        {%- endunless -%}
+<h2>{{ _section_year }}</h2>
+<ul>
+    {%- endif -%}
+    <li>{%- include document_link.html document=_document -%}</li>
+{%- endfor -%}
+</ul>

@@ -1,0 +1,125 @@
+{%- comment -%}
+    Base HTML document and root site markup
+
+    Parameters:
+        page.title: page title
+        page.no_title: if true omit page title from title tag
+        page.cover: filename of document's cover image asset
+        page.icon: filename of document's icon asset
+    Configuration:
+        site.data.site.charset: charset of site, ex: utf-8
+        site.data.site.locale: locale of site, ex: en_US
+        site.data.site.title: site title placed in head>title tag
+        site.data.site.owner: name of site owner
+        site.data.site.copyright: copyright year range
+        site.data.site.email: email address of site owner
+        site.data.site.neocities: neocities site name
+        site.data.site.cors_proxy: URL of CORS proxy server
+        site.data.links.internal: links to pages internal to the site
+        site.data.links.external: links external to the site
+{%- endcomment -%}
+
+
+{%- capture _image_path -%}
+    {%- if page.cover -%}
+        {%- include asset_url.fn filename=page.cover -%}
+    {%- elsif page.icon -%}
+        {%- include asset_url.fn filename=page.icon -%}
+    {%- else -%}
+        {%- include static_url.fn filename='cover.gif' -%}
+    {%- endif -%}
+{%- endcapture -%}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="{{ site.data.site.charset }}">
+        <title>{% unless page.no_title %}{{ page.title | escape }} - {% endunless %}{{ site.data.site.title | escape }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0" />
+        <link rel="stylesheet" type="text/css" href="{% include static_url.fn filename='styles.css' %}" />
+        <link rel="icon" type="image/x-icon" href="{% include static_url.fn filename='favicon.ico' %}" />
+        <link rel="apple-touch-icon" type="image/png" sizes="128x128" href="{% include static_url.fn filename='favicon-128.gif' %}" />
+        <meta property="og:locale" content="{{ site.data.site.locale }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="{{ site.data.site.title | escape }}"/>
+        <meta property="og:title" content="{{ page.title | escape }}" />
+        <meta property="og:description" content="{{ page.excerpt | strip_html | normalize_whitespace | escape }}" />
+        <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}" />
+        <meta property="og:image" content="{{ site.url }}{{ _image_path }}" />
+    </head>
+    <body class="base">
+        <header class="header">
+            <img class="header-junk header-junk-mercury" src="{% include static_url.fn dirname='junk' filename='mercury.gif' %}" alt="" />
+            <img class="header-junk header-junk-venus" src="{% include static_url.fn dirname='junk' filename='venus.gif' %}" alt="" />
+            <img class="header-junk header-junk-mars" src="{% include static_url.fn dirname='junk' filename='mars.gif' %}" alt="" />
+            <img class="header-junk header-junk-jupiter" src="{% include static_url.fn dirname='junk' filename='jupiter.gif' %}" alt="" />
+            <img class="header-junk header-junk-shuttle" src="{% include static_url.fn dirname='junk' filename='shuttle.gif' %}" alt="" />
+            <img class="header-junk header-junk-alien" src="{% include static_url.fn dirname='junk' filename='alien.gif' %}" alt="" />
+            <img class="header-junk header-junk-asteroid-1" src="{% include static_url.fn dirname='junk' filename='asteroid-1.gif' %}" alt="" />
+
+            <img class="header-junk header-junk-saturn" src="{% include static_url.fn dirname='junk' filename='saturn.gif' %}" alt="" />
+            <img class="header-junk header-junk-uranus" src="{% include static_url.fn dirname='junk' filename='uranus.gif' %}" alt="" />
+            <img class="header-junk header-junk-neptune" src="{% include static_url.fn dirname='junk' filename='neptune.gif' %}" alt="" />
+            <img class="header-junk header-junk-pluto" src="{% include static_url.fn dirname='junk' filename='pluto.gif' %}" alt="" />
+            <img class="header-junk header-junk-satellite" src="{% include static_url.fn dirname='junk' filename='satellite.gif' %}" alt="" />
+            <img class="header-junk header-junk-asteroid-2" src="{% include static_url.fn dirname='junk' filename='asteroid-2.gif' %}" alt="" />
+
+            <div class="header-banner">
+                <img class="header-banner-image" src="{% include static_url.fn filename='banner-1.gif' %}" alt="{{ site.data.site.title | escape }}"
+                /><img class="header-banner-image" src="{% include static_url.fn filename='banner-2.gif' %}" alt="" />
+            </div>
+            <div class="header-links">
+                <nav class="header-linkset">
+                {%- assign _link_count = 0 -%}
+                {%- for _link in site.data.links.internal -%}
+                    {%- assign _link_count = _link_count | plus: 1 -%}
+                    <a class="header-link header-link-{{ _link_count }}" href="{% include link_url.fn link=_link %}">
+                        <img class="header-icon" src="{% include static_url.fn dirname='icons' filename=_link.icon %}" alt="" />
+                        {{ _link.title | escape }}
+                    </a>
+                {%- endfor -%}
+                </nav><div class="header-linkset">
+                {%- for _link in site.data.links.external -%}
+                    {%- assign _link_count = _link_count | plus: 1 -%}
+                    <a class="header-link header-link-{{ _link_count }}" href="{% include link_url.fn link=_link %}">
+                        <img class="header-icon" src="{% include static_url.fn dirname='icons' filename=_link.icon %}" alt="" />
+                        {{ _link.title | escape }}
+                    </a>
+                {%- endfor -%}
+                </div>
+            </div>
+        </header>
+        <div class="body">{{ content }}</div>
+        <footer class="footer">
+            <div class="footer-notice">
+                <span class="footer-line">Site generated by <a href="https://jekyllrb.com/">Jekyll</a>.</span>
+                <span class="footer-line">Templates used to make this mess are <a href="{{ site.data.site.source_repo }}">open source</a>.</span>
+                <span class="footer-line">Content is copyright {{ site.data.site.copyright }} <a href="mailto:{{ site.data.site.email }}"> {{ site.data.site.owner }}</a>.</span>
+            </div>
+            <div class="footer-badges">
+            {%- for _badge in site.data.badges -%}
+                <div class="footer-badge">
+                {%- if _badge.url %}<a href="{% include link_url.fn link=_badge %}">{% endif -%}
+                    <img src="{% include static_url.fn dirname='badges' filename=_badge.filename %}" alt="{{ _badge.title | escape }}" />
+                {%- if _badge.url %}</a>{% endif -%}
+                </div>
+            {%- endfor -%}
+            </div>
+            <a id="counter" class="footer-counter" href="https://neocities.org/site/{{ site.data.site.neocities }}"></a>
+        </footer>
+        <script src="{% include static_url.fn filename='counter.js' %}"></script>
+        <script>
+            (function() {
+                var URL_TEMPLATE = '{% include static_url.fn dirname="digits" filename="{digit}.gif" %}';
+                function render(digit) {
+                    var src = URL_TEMPLATE.replace('{digit}', digit);
+                    return '<img src="' + src + '" alt="' + digit + '" />';
+                }
+                counter.init(
+                    '#counter', render,
+                    '{{ site.data.site.neocities }}',
+                    '{{ site.data.site.cors_proxy }}');
+            })();
+        </script>
+    </body>
+</html>

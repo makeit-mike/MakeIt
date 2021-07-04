@@ -1,0 +1,34 @@
+---
+layout: document
+---
+{%- comment -%}
+    List of all posts in site or a specified collection
+ 
+    Parameters:
+        page.title: page title
+        page.item_collection: collection of pages to show, omit to show all posts
+        page.item_categories: category list an item must have to be rendered
+        page.item_sort_by: field to sort items by, defaults to date
+        page.item_reverse: if true reverse collection order, defaults to true
+        page.item_template: template in _includes used to render each item
+        page.item_count: maximum number of items to show
+{%- endcomment -%}
+
+
+{{- content -}}
+
+{%- include filtered_collection.fn collection=page.item_collection
+        categories=page.item_categories
+        sort_by=page.item_sort_by reverse=page.item_reverse -%}
+
+<div class="collection">
+{%- for _document in filtered_collection -%}
+    <div class="collection-item">
+    {%- include {{ page.item_template }} document=_document -%}
+    </div>
+
+    {%- if forloop.index == page.item_count -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+</div>

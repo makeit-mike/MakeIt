@@ -1,0 +1,122 @@
+---
+layout: base
+---
+{%- comment -%}
+    A page with a title, date, and navigation
+    Next and previous links will navigate to pages in the same collection with
+    matching categories unless next_path is set in front matter.
+
+    Parameters:
+        page.title: page title
+        page.date: page date
+        page.next_path: path to document to show as next link
+        page.nav_sort_by: sort field for next and prev links, defaults to date
+        page.no_header: if true hide document header from user view
+{%- endcomment -%}
+
+
+{%- assign _nav_sort_by = page.nav_sort_by | default: 'date' -%}
+{%- assign _prev_document = nil -%}
+{%- assign _next_document = nil -%}
+
+{%- if page.next_path -%}
+    {%- assign _next_document = site.pages
+            | where: 'path', page.next_path | first -%}
+
+{%- elsif page.collection -%}
+    {%- include filtered_collection.fn
+            collection=page.collection categories=page.categories -%}
+    {%- assign _collection_documents = filtered_collection
+            | sort: _nav_sort_by -%}
+
+    {%- for _document in _collection_documents -%}
+        {%- if _document == page -%}
+            {%- unless forloop.first -%}
+                {%- assign _prev_index = forloop.index0 | minus: 1 -%}
+                {%- assign _prev_document = _collection_documents[_prev_index] -%}
+            {%- endunless -%}
+
+            {%- unless forloop.last -%}
+                {%- assign _next_index = forloop.index0 | plus: 1 -%}
+                {%- assign _next_document = _collection_documents[_next_index] -%}
+            {%- endunless -%}
+
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
+
+<article class="document">
+    <header class="document-header {% if page.no_header %}document-header-hidden{% endif %}">
+
+        <nav class="document-breadcrumbs">
+{%- if page.path != "index.md" -%}
+            <span class="document-breadcrumb"><a href="{{ site.baseurl }}/">Home</a></span>
+{%- endif -%}
+
+{%- comment -%}collection pages{%- endcomment -%}
+{%- if page.collection -%}
+    {%- assign _collection_path = page.collection | append: "/index.md" -%}
+    {%- assign _collection_page = site.pages | where: "path", _collection_path | first -%}
+            <span class="document-breadcrumb"><a href="{{ site.baseurl }}{{ _collection_page.url }}">{{ _collection_page.title | escape }}</a></span>
+
+    {%- assign _categories = page.categories | join: "" -%}
+    {%- if _categories != "" -%}
+        {%- assign _parent_path = "_" | append: page.collection | append: "/" | append: page.categories[0] | append: ".md" -%}
+        {%- assign _parent_page = site.documents | where: "path", _parent_path | first -%}
+            <span class="document-breadcrumb"><a href="{{ site.baseurl }}{{ _parent_page.url }}">{{ _parent_page.title | escape }}</a></span>
+    {%- endif -%}
+
+{%- comment -%}static pages{%- endcomment -%}
+{%- else -%}
+    {%- assign _path_segments = page.path | split: "/" -%}
+    {%- assign _dir_path = "" -%}
+    {%- for _segment in _path_segments -%}
+        {%- if forloop.last -%}
+            {%- break -%}
+        {%- endif -%}
+
+        {%- assign _dir_path = _dir_path | append: _segment | append: "/" -%}
+        {%- assign _index_path = _dir_path | append: "index.md" -%}
+        {%- if _index_path != page.path -%}
+            {%- assign _index_page = site.pages | where: "path", _index_path | first -%}
+            {%- if _index_page -%}
+            <span class="document-breadcrumb"><a href="{{ site.baseurl }}{{ _index_page.url }}">{{ _index_page.title | escape }}</a></span>
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+
+{%- endif -%}
+            <span class="document-breadcrumb-last">{{ page.title | escape }}</span>
+        </nav>
+    
+        {%- include heading.html level=1 text=page.title flair=page.flair -%}
+{%- if page.date -%}
+        <div class="document-date">Published {% include date.html date=page.date %}</div>
+{%- endif -%}
+    </header>
+    <div class="document-content">
+{{- content -}}
+    </div>
+{%- if _prev_document or _next_document -%}
+    <footer class="document-footer">
+        <nav class="document-nav">
+            <div class="document-prev">
+    {%- if _prev_document -%}
+                <a class="document-prev-link" href="{{ site.baseurl }}{{ _prev_document.url }}">
+                    <img src="{% include static_url.fn filename='prev.gif' %}" alt="Previous"/>
+                    <br/>{{ _prev_document.title | escape }}
+                </a>
+    {%- endif -%}
+            </div><div class="document-next">
+    {%- if _next_document -%}
+                <a class="document-next-link" href="{{ site.baseurl }}{{ _next_document.url }}">
+                    <img src="{% include static_url.fn filename='next.gif' %}" alt="Next"/>
+                    <br/>{{ _next_document.title | escape }}
+                </a>
+    {%- endif -%}
+            </div>
+        </nav>
+    </footer>
+{%- endif -%}
+</article>

@@ -1,32 +1,32 @@
-import logo from './logo.svg';
-// import { Button, Navbar, Nav,NavDropdown,Form,FormControl } from 'react-bootstrap';
+import React from "react";
+import "./App.css";
 
-import React, { Suspense, lazy } from 'react';
-// import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import Main from './Main'; // fallback for lazy pages
+//COMPONENTS
+import Navbar from "./Components/NavBar";
 
-import './App.css';
-import Navbar from './Components/NavBar';
+//ROUTING & PAGES
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Projects from "./Pages/Projects";
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar />
+
+        <Switch>
+          <Route path="/" exact component={Home} />
+
+          <Route path="/about" exact component={About} />
+          <Route path="/projects" exact component={Projects} />
+          <Route path="/projects" exact component={Projects} />
+          <Route path="*" exact component={PageNotFound} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 

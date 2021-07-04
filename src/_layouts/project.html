@@ -1,0 +1,42 @@
+---
+layout: document
+---
+{%- comment -%}
+    A project page with log entry pages
+
+    Parameters:
+        page.title: page title
+        page.date: page date
+        page.links: list of link objects containing title, description, and url
+{%- endcomment -%}
+
+
+<div class="project">
+    {{- content -}}
+
+
+    {%- if page.links != nil -%}
+    <h2>Links</h2>
+    <ul>
+        {%- for _link in page.links -%}
+        <li><a href="{{ _link.url }}">{{ _link.title }}</a> {{ _link.description }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+
+
+    {%- assign _page_basename = page.path | split: '/' | last | split: '.' | first -%}
+    {%- assign _log_categories = _page_basename | append: ',logs' | split: ',' -%}
+    {%- include filtered_collection.fn collection=page.collection categories=_log_categories -%}
+    {%- assign _logs = filtered_collection -%}
+
+    {%- if _logs != empty -%}
+    <h2>Logs</h2>
+    <ul>
+        {%- for _log in _logs -%}
+        <li>{%- include document_link.html document=_log -%}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+
+</div>
