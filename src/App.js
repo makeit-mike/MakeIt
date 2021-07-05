@@ -3,6 +3,8 @@ import "./App.css";
 
 //COMPONENTS
 import Navbar from "./Components/NavBar";
+import Nav from "./Components/Nav";
+import Footer from "./Components/Footer";
 
 //ROUTING & PAGES
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -15,7 +17,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <Nav />
 
         <Switch>
           <Route path="/" exact component={Home} />
@@ -26,6 +28,8 @@ function App() {
           <Route path="*" exact component={PageNotFound} />
         </Switch>
       </Router>
+
+      <Footer />
     </>
   );
 }

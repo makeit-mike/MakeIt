@@ -1,13 +1,14 @@
 import React from "react";
-
+import BlackBar from "../Components/BlackBar";
 class About extends React.Component {
   render() {
     return (
       <div>
-        About
-        <div className="MyInteresets">
-          Hello! Here are some of the things I like to do while I spin around on
-          a rock in the black void:
+        <div className="textSection">
+          <BlackBar />
+          <h3>Hello!</h3>
+          Here are some of the things I like to do while I spin around on a rock
+          in the black void:
           <ul>
             <li>Coding!</li>
             <li>Practicing/Playing Guitar</li>

@@ -24,24 +24,39 @@ class NavigationBar extends React.Component {
           bg="dark"
           variant="dark"
           expand="lg"
-          sticky="top"
+          sticky="right"
           className="navBar"
         >
           <Link to="/">
             {" "}
-            <img src={HomeIcon} alt="Home" title="Home" />
+            <img src={HomeIcon} className="navIcon" alt="Home" title="Home" />
           </Link>
           <Link to="/about">
             {" "}
-            <img src={alien} alt="About Me" title="About Me" />
+            <img
+              src={alien}
+              className="navIcon"
+              alt="About Me"
+              title="About Me"
+            />
           </Link>
           <Link to="/projects">
             {" "}
-            <img src={ComputerIcon} alt="Projects" title="Projects" />
+            <img
+              src={ComputerIcon}
+              className="navIcon"
+              alt="Projects"
+              title="Projects"
+            />
           </Link>
           <Link to="/contact">
             {" "}
-            <img src={EmailIcon} alt="Contact" title="Contact" />
+            <img
+              src={EmailIcon}
+              className="navIcon"
+              alt="Contact"
+              title="Contact"
+            />
           </Link>
 
           {/* <Navbar.Brand href="#home">

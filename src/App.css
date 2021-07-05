@@ -1,7 +1,50 @@
 html,
 body {
-  background-image: url("./static/bg.gif");
+  background-color: rgb(80, 80, 110) !important;
+  /* background-image: url("./static/bg2.gif");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */
+  background-size: cover;
   color: beige !important;
+  font-size: 30px !important;
+  padding: 15px !important;
+  font-family: "ＭＳ Ｐゴシック" !important;
+}
+.menuBar {
+  height: 99px;
+  margin-top: -54px;
+  width: 700px;
+  background-color: rgb(0 0 0 / 82%) !important;
+}
+
+.NavStickyRight {
+  position: absolute;
+  top: 120px;
+  right: 15px;
+  position: fixed;
+}
+.NavBoxItem {
+  height: 75px;
+  width: 75px;
+  background-color: rgb(160, 160, 160) !important;
+  border-radius: 2px;
+  border-style: solid;
+  color: #242424;
+}
+.textSection {
+  background-color: rgb(160, 160, 160) !important;
+  width: 700px;
+  padding: 30px;
+  max-width: 700px;
+  margin-left: 10%;
+  margin-top: 5%;
+  border-radius: 2px;
+  border-style: solid;
+  color: #242424;
 }
 body::-webkit-scrollbar {
   width: 4px;
@@ -11,7 +54,23 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(44, 44, 44, 0.164);
+  color: white;
+  text-align: right;
+  padding: 2px;
+}
+#footer {
+  width: 100%;
+  height: 70px;
+  background-color: greenyellow;
+  position: fixed;
+  clear: both;
+}
 body::-webkit-scrollbar-thumb {
   background-color: rgb(36, 36, 36);
   outline: 1px solid rgb(43, 43, 43);
@@ -20,6 +79,10 @@ a {
   text-decoration: underline !important;
   text-decoration-style: wavy !important;
   color: #ffffff !important;
+}
+
+.navIcon {
+  padding-left: 20%;
 }
 .pseudoLinkButton {
   background: transparent;
@@ -32,6 +95,15 @@ a {
   width: 100%;
   padding: 25px;
   height: 51px;
+}
+.DividerFooter {
+  width: 100%;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: 1px;
+  margin-top: -15px;
+  margin-bottom: -25px;
+  opacity: 30%;
 }
 .App {
   text-align: center;
@@ -46,26 +118,15 @@ a {
   display: inline;
   font-size: 25px;
 }
-.PNF {
-  height: 1200px;
-}
-.PageNotFoundBlerb,
-.MyInteresets {
-  padding: 30px;
-  max-width: 700px;
-}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 .bg-dark {
-  background-image: url("./static/bg.gif") !important;
-
-  background-color: #222222 !important;
-  opacity: 69% !important;
+  background-color: black !important;
 }
 .navBar {
-  background-color: #222222 !important;
+  background-color: black !important;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -75,7 +136,7 @@ a {
 .HeaderText {
   font-family: "ＭＳ Ｐゴシック";
   font-size: calc(10px + 2vmin);
-  color: beige;
+  color: rgb(20, 20, 20);
 }
 .App-header {
   display: flex;
@@ -84,147 +145,4 @@ a {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: rgb(80, 90, 99);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.solarSystem {
-  margin-top: -35px;
-  position: absolute;
-}
-.sun {
-  margin-left: 398px;
-  margin-top: 184px;
-}
-.mercury {
-  position: absolute;
-  left: 391px;
-  top: 191px;
-
-  -webkit-animation: myOrbit 1.8s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 1.8s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 1.8s linear infinite; /* Opera 12+ */
-  animation: myOrbit 1.8s linear infinite;
-}
-.venus {
-  position: absolute;
-  left: 391px;
-  top: 191px;
-
-  -webkit-animation: myOrbit 2s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 2s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 2s linear infinite; /* Opera 12+ */
-  animation: myOrbit 2s linear infinite;
-}
-.earth {
-  position: absolute;
-  left: 391px;
-  top: 191px;
-  width: 80px;
-
-  -webkit-animation: myOrbit 2s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 2s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 2s linear infinite; /* Opera 12+ */
-  animation: myOrbit 2s linear infinite;
-}
-.mars {
-  position: absolute;
-  left: 391px;
-  top: 191px;
-
-  -webkit-animation: myOrbit 2.8s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 2.8s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 2.8s linear infinite; /* Opera 12+ */
-  animation: myOrbit 2.8s linear infinite;
-}
-.jupiter {
-  position: absolute;
-  left: 391px;
-  top: 191px;
-
-  -webkit-animation: myOrbit 3s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 3s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 3s linear infinite; /* Opera 12+ */
-  animation: myOrbit 3s linear infinite;
-}
-.saturn {
-  position: absolute;
-  left: 315px;
-  top: 143px;
-  padding: 25px;
-
-  -webkit-animation: myOrbit 4s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 4s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 4s linear infinite; /* Opera 12+ */
-  animation: myOrbit 4s linear infinite;
-}
-.uranus {
-  position: absolute;
-  left: 391px;
-  top: 191px;
-
-  -webkit-animation: myOrbit 5s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 5s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 5s linear infinite; /* Opera 12+ */
-  animation: myOrbit 5s linear infinite;
-}
-.pluto {
-  position: absolute;
-  left: 391px;
-  top: 191px;
-  -webkit-animation: myOrbit 10s linear infinite; /* Chrome, Safari 5 */
-  -moz-animation: myOrbit 10s linear infinite; /* Firefox 5-15 */
-  -o-animation: myOrbit 10s linear infinite; /* Opera 12+ */
-  animation: myOrbit 10s linear infinite;
-}
-
-/*
-* Set up the keyframes to actually describe the begining and end states of 
-* the animation.  The browser will interpolate all the frames between these 
-* points.  Again, remember your vendor-specific prefixes for now!
-*/
-@-webkit-keyframes myOrbit {
-  from {
-    -webkit-transform: rotate(0deg) translateX(150px) rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg) translateX(150px) rotate(-360deg);
-  }
-}
-
-@-moz-keyframes myOrbit {
-  from {
-    -moz-transform: rotate(0deg) translateX(150px) rotate(0deg);
-  }
-  to {
-    -moz-transform: rotate(360deg) translateX(150px) rotate(-360deg);
-  }
-}
-
-@-o-keyframes myOrbit {
-  from {
-    -o-transform: rotate(0deg) translateX(150px) rotate(0deg);
-  }
-  to {
-    -o-transform: rotate(360deg) translateX(150px) rotate(-360deg);
-  }
-}
-
-@keyframes myOrbit {
-  from {
-    transform: rotate(0deg) translateX(150px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(150px) rotate(-360deg);
-  }
 }
